@@ -23,10 +23,10 @@ import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
@@ -37,8 +37,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
+// @NoArgsConstructor
 public class BeerOrder extends BaseEntity {
+
+    public BeerOrder() {}; // added
 
     @Builder
     public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef, Customer customer,

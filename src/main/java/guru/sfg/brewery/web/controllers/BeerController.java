@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -114,7 +114,8 @@ public class BeerController {
     private PageRequest createPageRequest(int page, int size, Sort.Direction sortDirection, String propertyName) {
         return PageRequest.of(page,
                 size,
-                new Sort(sortDirection, propertyName));
+                Sort.by(sortDirection, propertyName)
+        );
     }
 }
 
