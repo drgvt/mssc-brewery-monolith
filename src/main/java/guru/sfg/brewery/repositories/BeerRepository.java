@@ -19,6 +19,17 @@ package guru.sfg.brewery.repositories;
 import guru.sfg.brewery.domain.Beer;
 import guru.sfg.brewery.web.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;
+
+/*
+Этот интерфейс нужен для работы с таблицей пива в базе данных:
+он дает готовые методы сохранения/поиска и позволяет Spring
+автоматически генерировать SQL-запросы для поиска пива по имени
+или стилю с поддержкой пагинации.
+*/
+
+import guru.sfg.brewery.domain.Beer;
+import guru.sfg.brewery.web.model.BeerStyleEnum;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
