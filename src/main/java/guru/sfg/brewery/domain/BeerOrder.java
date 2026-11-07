@@ -16,6 +16,13 @@
  */
 package guru.sfg.brewery.domain;
 
+/*
+ * Этот класс описывает сам заказ клиента, который содержит в себе
+ * набор позиций (BeerOrderLine), информацию о заказчике (Customer),
+ * статус заказа (OrderStatusEnum) и URL для обратного вызова
+ * (чтобы оповестить внешнюю систему о смене статуса - в микросервисах).
+ */
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

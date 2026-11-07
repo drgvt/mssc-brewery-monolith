@@ -16,6 +16,11 @@ import jakarta.transaction.Transactional;
 @Slf4j
 @Component
 public class BrewBeerListener {
+    /*
+     * Да, внутри Spring хранится список (коллекция) всех слушателей для каждого
+     * типа события, и при публикации Spring перебирает этот список, передавая
+     * объект события в каждый подходящий метод с @EventListener
+     */
 
     private final BeerRepository beerRepository;
     private final ApplicationEventPublisher publisher;
@@ -38,9 +43,9 @@ public class BrewBeerListener {
                                         .quantityOnHand(beer.getQuantityToBrew())
                                         .build();
 
-        beer.getBeerInventory().add(beerInventory);
+        beer.getBeerInventory().add(beerInventory); // добавляем новую партию в список партий пива
 
-        Beer savedBeer = beerRepository.save(beer);
+        Beer savedBeer = beerRepository.save(beer); // сохраняем пиво (и каскадом новую партию) в БД
 
         log.debug("Brewed some beer! " + savedBeer.getBeerName());
         publisher.publishEvent(new NewInventoryEvent(beer));

@@ -1,3 +1,11 @@
+/*
+ * Этот класс — клиент, который по HTTP обращается к внешнему сервису пива (Beer Service) по
+ * адресу из настроек, чтобы получить данные о конкретном пиве по его ID.
+ * В монолите сервисы обычно работают с БД, но здесь BeerServiceImpl — это заготовка
+ * на будущее: после декомпозиции на микросервисы этот класс станет клиентом, который ходит за
+ * пивом в отдельный Beer Service, а пока он просто демонстрирует, как это будет устроено.
+ */
+
 package guru.sfg.brewery.services;
 
 import guru.sfg.brewery.web.model.BeerDto;
@@ -14,7 +22,7 @@ import java.util.UUID;
 public class BeerServiceImpl implements BeerService {
 
     public final String BEER_PATH_V1 = "/api/v1/beer/";
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate; // // HTTP-клиент из Spring, который позволяет Java-коду отправлять запросы (GET, POST и т.д.) на другие сервисы и получать от них ответы
 
     private String beerServiceHost;
 

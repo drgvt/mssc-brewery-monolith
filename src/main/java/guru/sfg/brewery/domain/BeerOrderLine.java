@@ -14,13 +14,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+/*
+Этот класс описывает одну позицию в заказе (строку заказа):
+какое именно пиво (Beer), в каком заказе (BeerOrder),
+сколько заказано (orderQuantity) и сколько уже
+зарезервировано на складе (quantityAllocated)
+ */
+
 package guru.sfg.brewery.domain;
 
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import java.sql.Timestamp;

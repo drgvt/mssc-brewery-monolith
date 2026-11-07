@@ -15,6 +15,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ * Этот класс работает с БД и управляет заказами пива: он позволяет получить
+ * список заказов клиента, оформить новый заказ (и опубликовать событие NewBeerOrderEvent),
+ * найти конкретный заказ или отметить его как «забранный» (PICKED_UP)
+ */
+
 package guru.sfg.brewery.services;
 
 import guru.sfg.brewery.domain.BeerOrder;
@@ -23,6 +29,7 @@ import guru.sfg.brewery.domain.OrderStatusEnum;
 import guru.sfg.brewery.events.NewBeerOrderEvent;
 import guru.sfg.brewery.repositories.BeerOrderRepository;
 import guru.sfg.brewery.repositories.CustomerRepository;
+import guru.sfg.brewery.services.BeerOrderService;
 import guru.sfg.brewery.web.mappers.BeerOrderMapper;
 import guru.sfg.brewery.web.model.BeerOrderDto;
 import guru.sfg.brewery.web.model.BeerOrderPagedList;

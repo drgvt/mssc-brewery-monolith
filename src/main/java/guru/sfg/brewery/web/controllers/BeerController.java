@@ -41,7 +41,11 @@ public class BeerController {
     }
 
     @GetMapping
-    public String processFindFormReturnMany(Beer beer, BindingResult result, Model model) {
+    public String processFindFormReturnMany(Beer beer, BindingResult result, Model model) { // ищет пиво по введенному имени: если ничего не нашел — возвращает форму с ошибкой, если нашел одно — перекидывает на его страницу, если несколько — показывает список
+        /*
+         * ищет пиво по введенному имени: если ничего не нашел — возвращает форму с ошибкой,
+         * если нашел одно — перекидывает на его страницу, если несколько — показывает список
+         */
         // find beers by name
         //ToDO: Add Service
         //ToDO: Get paging data from view
@@ -67,18 +71,18 @@ public class BeerController {
     public ModelAndView showBeer(@PathVariable UUID beerId) {
         ModelAndView mav = new ModelAndView("beers/beerDetails");
         //ToDO: Add Service
-        mav.addObject(beerRepository.findById(beerId).get());
+        mav.addObject(beerRepository.findById(beerId).get()); // findById() возвращает не сам объект, а контейнер Optional<Beer> (который может быть пустым, если пива с таким ID нет), а .get() уже достает из него сам объект Beer
         return mav;
     }
 
     @GetMapping("/new")
-    public String initCreationForm(Model model) {
-        model.addAttribute("beer", Beer.builder().build());
+    public String initCreationForm(Model model) { // открывает пустую HTML-форму для ввода
+        model.addAttribute("beer", Beer.builder().build()); // создает пустой объект Beer и кладет его в модель (чтобы Thymeleaf-форма на странице createBeer могла привязаться к нему для ввода данных), после чего возвращает имя шаблона beers/createBeer для отображения
         return "beers/createBeer";
     }
 
     @PostMapping("/new")
-    public String processCreationForm(Beer beer) {
+    public String processCreationForm(Beer beer) { // принимает данные из формы ↑ и сохраняет новое пиво в базу данных
         //ToDO: Add Service
         Beer newBeer = Beer.builder()
                 .beerName(beer.getBeerName())

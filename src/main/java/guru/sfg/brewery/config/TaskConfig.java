@@ -1,3 +1,10 @@
+/*
+ * Этот класс включает в приложении асинхронность (@EnableAsync)
+ * и планировщик задач (@EnableScheduling), а также создает
+ * простой пул потоков (SimpleAsyncTaskExecutor), чтобы задачи (например,
+ * регулярная проверка склада) могли выполняться в фоне, не блокируя основной поток.
+ */
+
 package guru.sfg.brewery.config;
 
 import org.springframework.context.annotation.Bean;

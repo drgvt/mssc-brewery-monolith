@@ -14,19 +14,19 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+/*
+ * Этот интерфейс нужен для работы с таблицей пива в базе данных:
+ * он дает готовые методы сохранения/поиска и позволяет Spring
+ * автоматически генерировать SQL-запросы для поиска пива по имени
+ * или стилю с поддержкой пагинации.
+ */
+
 package guru.sfg.brewery.repositories;
 
 import guru.sfg.brewery.domain.Beer;
 import guru.sfg.brewery.web.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;
-
-/*
-Этот интерфейс нужен для работы с таблицей пива в базе данных:
-он дает готовые методы сохранения/поиска и позволяет Spring
-автоматически генерировать SQL-запросы для поиска пива по имени
-или стилю с поддержкой пагинации.
-*/
-
 import guru.sfg.brewery.domain.Beer;
 import guru.sfg.brewery.web.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;
@@ -40,7 +40,7 @@ import java.util.UUID;
  */
 public interface BeerRepository extends JpaRepository<Beer, UUID> {
     
-    Page<Beer> findAllByBeerName(String beerName, Pageable pageable);
+    Page<Beer> findAllByBeerName(String beerName, Pageable pageable); // Spring Data JPA строго парсит имя метода, findAll (что делать) + By (по какому условию) + BeerName (по какому полю) — и на основе этого сам генерирует SQL-запрос, а параметры и возвращаемый тип (сигнатура) используются только для подстановки значений и обертки результата
 
     Page<Beer> findAllByBeerStyle(BeerStyleEnum beerStyle, Pageable pageable);
 

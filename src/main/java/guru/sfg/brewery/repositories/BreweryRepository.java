@@ -14,7 +14,19 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+/*
+ * репозиторий для работы с пивоварнями в базе данных, который благодаря
+ * наследованию от JpaRepository сразу получает готовые методы для сохранения,
+ * поиска и удаления сущностей Brewery без написания SQL-кода
+ *
+ * В domain лежит сама сущность (класс Brewery с полями и @Entity), а в repositories —
+ * интерфейс (BreweryRepository), который управляет сохранением и поиском этой сущности в БД.
+ */
+
 package guru.sfg.brewery.repositories;
+
+import guru.sfg.brewery.domain.Brewery;
 
 import guru.sfg.brewery.domain.Brewery;
 import org.springframework.data.jpa.repository.JpaRepository;

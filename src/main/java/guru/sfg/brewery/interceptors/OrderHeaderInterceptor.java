@@ -15,6 +15,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+* Этот класс — Hibernate-перехватчик, который при каждом сохранении заказа (BeerOrder)
+* сравнивает его текущий статус с предыдущим и, если они отличаются, генерирует
+* событие BeerOrderStatusChangeEvent для остальной системы.
+*/
+
 package guru.sfg.brewery.interceptors;
 
 import guru.sfg.brewery.domain.BeerOrder;

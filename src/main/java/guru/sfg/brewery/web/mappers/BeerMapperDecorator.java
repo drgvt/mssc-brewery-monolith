@@ -1,5 +1,11 @@
 package guru.sfg.brewery.web.mappers;
 
+/*
+Декоратор нужен, чтобы расширить работу маппера
+(добавить подсчет общего количества пива на складе),
+не меняя при этом основной сгенерированный интерфейс BeerMapper
+ */
+
 import guru.sfg.brewery.domain.Beer;
 import guru.sfg.brewery.domain.BeerInventory;
 import guru.sfg.brewery.web.model.BeerDto;
@@ -7,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 public abstract class BeerMapperDecorator implements BeerMapper{
-
     private BeerMapper beerMapper;
 
     @Autowired

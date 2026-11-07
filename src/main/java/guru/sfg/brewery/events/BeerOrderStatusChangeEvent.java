@@ -15,6 +15,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ * Чтобы оповестить другие части системы о том, что статус заказа изменился,
+ * и передать им сам заказ вместе с его предыдущим статусом (чтобы они могли сравнить,
+ * что было и что стало)
+ */
+
 package guru.sfg.brewery.events;
 
 import guru.sfg.brewery.domain.BeerOrder;

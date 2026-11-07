@@ -14,6 +14,15 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+
+/*
+ * При запуске приложения наполняет базу данных стартовыми данными
+ * (если она пустая): создает клиента, пивоварню и три вида пива
+ * (Mango Bobs, Galaxy Cat, Pinball Porter)
+ */
+
+
 package guru.sfg.brewery.bootstrap;
 
 import guru.sfg.brewery.domain.Beer;

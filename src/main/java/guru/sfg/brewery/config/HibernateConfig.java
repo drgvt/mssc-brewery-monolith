@@ -15,6 +15,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ * Этот класс регистрирует OrderHeaderInterceptor
+ * в настройках Hibernate, чтобы тот автоматически срабатывал
+ * при каждом сохранении или изменении сущностей в базе данных.
+ */
+
 package guru.sfg.brewery.config;
 
 import org.hibernate.Interceptor;

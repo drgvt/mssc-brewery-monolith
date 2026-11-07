@@ -14,6 +14,13 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+/*
+ * Сервис, который предоставляет бизнес-логику для работы с пивоварнями.
+ * Он просто вызывает метод findAll() у репозитория, который возвращает
+ * список всех пивоварен из базы данных
+ */
+
 package guru.sfg.brewery.services;
 
 import guru.sfg.brewery.domain.Brewery;

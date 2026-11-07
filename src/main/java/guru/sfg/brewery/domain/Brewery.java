@@ -14,6 +14,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+/*
+ * Этот класс описывает пивоварню как отдельную сущность в базе данных,
+ * чтобы в будущем можно было привязать к ней пиво, заказы или склад.
+ */
+
 package guru.sfg.brewery.domain;
 
 import lombok.Builder;

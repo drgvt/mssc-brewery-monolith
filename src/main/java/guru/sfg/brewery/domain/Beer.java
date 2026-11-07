@@ -69,10 +69,14 @@ public class Beer extends BaseEntity {
      * Min on hand qty - used to trigger brew
      */
     private Integer minOnHand;
-    private Integer quantityToBrew;
+    private Integer quantityToBrew; // не рассчитывается, а фиксированно задается на доварку, если осталось ниже лимита
     private BigDecimal price;
 
+    /*
+     * @Fetch(FetchMode.JOIN) говорит Hibernate загружать связанные сущности (в данном случае партии
+     * пива BeerInventory) одним SQL-запросом через JOIN, а не отдельными запросами для каждой партии
+     */
     @OneToMany(mappedBy = "beer", cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
-    private Set<BeerInventory> beerInventory = new HashSet<>();
+    private Set<BeerInventory> beerInventory = new HashSet<>(); // нужно, чтобы можно было объединять таблицы (складские запасы, где одним из полей будет beer)
 }

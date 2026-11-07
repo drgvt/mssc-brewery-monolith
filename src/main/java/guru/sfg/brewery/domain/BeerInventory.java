@@ -16,6 +16,16 @@
  */
 package guru.sfg.brewery.domain;
 
+/*
+ * Этот класс описывает партию конкретного пива на складе:
+ * он привязывает пиво (Beer) к количеству, которое сейчас
+ * физически есть в наличии (quantityOnHand)
+ *
+ * Это про конкретную партию определенного пива, а не про сумму всех партий —
+ * здесь quantityOnHand хранит остаток именно этой сваренной партии,
+ * а их общая сумма считается в другом месте (через inventory_qoh в InventoryService)
+ */
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
