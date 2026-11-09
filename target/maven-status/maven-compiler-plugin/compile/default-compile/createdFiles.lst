@@ -10,6 +10,7 @@ guru\sfg\brewery\web\mappers\BeerOrderLineMapperDecorator.class
 guru\sfg\brewery\domain\BeerInventory$BeerInventoryBuilder.class
 guru\sfg\brewery\web\controllers\CustomerController.class
 guru\sfg\brewery\web\controllers\BreweryController.class
+guru\sfg\brewery\web\mappers\BeerOrderMapperImpl$1.class
 guru\sfg\brewery\web\model\BeerOrderLineDto$BeerOrderLineDtoBuilder.class
 guru\sfg\brewery\services\BeerOrderService.class
 guru\sfg\brewery\web\mappers\BeerOrderLineMapperImpl_.class
