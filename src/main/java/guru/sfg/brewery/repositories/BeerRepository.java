@@ -20,13 +20,11 @@
  * он дает готовые методы сохранения/поиска и позволяет Spring
  * автоматически генерировать SQL-запросы для поиска пива по имени
  * или стилю с поддержкой пагинации.
+ * Это про все пиво в целом (весь ассортимент), а методы позволяют отфильтровать его по имени или стилю.
  */
 
 package guru.sfg.brewery.repositories;
 
-import guru.sfg.brewery.domain.Beer;
-import guru.sfg.brewery.web.model.BeerStyleEnum;
-import org.springframework.data.domain.Page;
 import guru.sfg.brewery.domain.Beer;
 import guru.sfg.brewery.web.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;

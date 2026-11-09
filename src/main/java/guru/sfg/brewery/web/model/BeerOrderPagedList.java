@@ -15,6 +15,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/*
+ * Обертка над PageImpl, которая нужна, чтобы Spring корректно
+ * превращал страницу с заказами (Page<BeerOrderDto>) в JSON при сериализации
+ */
+
 package guru.sfg.brewery.web.model;
 
 import org.springframework.data.domain.PageImpl;

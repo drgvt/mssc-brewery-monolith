@@ -90,11 +90,11 @@ public class BeerOrderServiceImpl implements BeerOrderService {
 
         if (customerOptional.isPresent()) {
             BeerOrder beerOrder = beerOrderMapper.dtoToBeerOrder(beerOrderDto);
-            beerOrder.setId(null); //should not be set by outside client
-            beerOrder.setCustomer(customerOptional.get());
+            beerOrder.setId(null); // // сбрасываем ID, чтобы база сама выдала новый (клиент не должен задавать ID)
+            beerOrder.setCustomer(customerOptional.get()); // привязываем заказ к найденному клиенту
             beerOrder.setOrderStatus(OrderStatusEnum.NEW);
 
-            beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder));
+            beerOrder.getBeerOrderLines().forEach(line -> line.setBeerOrder(beerOrder)); // в каждой строке заказа проставляем ссылку на этот заказ (двусторонняя связь)
 
             BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder);
 

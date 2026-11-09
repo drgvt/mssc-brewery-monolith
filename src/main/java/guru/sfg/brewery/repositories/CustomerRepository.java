@@ -14,6 +14,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+/*
+ * Это репозиторий для управления сущностями Customer (клиентами) в базе данных,
+ * который дополнительно умеет искать клиентов по частичному совпадению
+ * имени благодаря методу findAllByCustomerNameLike
+ */
+
 package guru.sfg.brewery.repositories;
 
 import guru.sfg.brewery.domain.Customer;
