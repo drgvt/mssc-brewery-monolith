@@ -38,7 +38,7 @@ public class HibernateConfig implements HibernatePropertiesCustomizer {
 
     @Override
     public void customize(Map<String, Object> hibernateProperties) {
-        hibernateProperties.put("hibernate.ejb.interceptor", orderHeaderInterceptor);
+        hibernateProperties.put("hibernate.session_factory.interceptor", orderHeaderInterceptor);
     }
 
 }

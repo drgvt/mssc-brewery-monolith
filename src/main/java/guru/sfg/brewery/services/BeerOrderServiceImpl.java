@@ -113,8 +113,9 @@ public class BeerOrderServiceImpl implements BeerOrderService {
         return beerOrderMapper.beerOrderToDto(getOrder(customerId, orderId));
     }
 
+    // НЕ ИСПОЛЬЗУЕТСЯ В МОНОЛИТЕ - ЗАДЕЛ НА БУДУЩЕЕ
     @Override
-    public void pickupOrder(UUID customerId, UUID orderId) {
+    public void pickupOrder(UUID customerId, UUID orderId) { // достает заказ из БД, меняет статус и сохраняет обратно в БД
         BeerOrder beerOrder = getOrder(customerId, orderId);
         beerOrder.setOrderStatus(OrderStatusEnum.PICKED_UP);
 
