@@ -44,7 +44,7 @@ public class TastingRoomService {
 
     @Transactional
     @Scheduled(fixedRate = 2000) //run every 2 seconds
-    public void placeTastingRoomOrder(){    
+    public void placeTastingRoomOrder(){
 
         List<Customer> customerList = customerRepository.findAllByCustomerNameLike(DefaultBreweryLoader.TASTING_ROOM); // // ищем в БД клиента с именем "Tasting Room"
 
@@ -58,7 +58,7 @@ public class TastingRoomService {
     private void doPlaceOrder(Customer customer) {
         Beer beerToOrder = getRandomBeer();
 
-        BeerOrderLineDto beerOrderLine = BeerOrderLineDto.builder() // // создаем одну позицию в заказе (строку)
+        BeerOrderLineDto beerOrderLine = BeerOrderLineDto.builder() // создаем одну позицию в заказе (строку)
                 .beerId(beerToOrder.getId())
                 .orderQuantity(new Random().nextInt(6)) //todo externalize value to property (вынести это число в application.properties), пока задаем случайное количество от 0 до 5
                 .build();
@@ -79,8 +79,8 @@ public class TastingRoomService {
     }
 
     private Beer getRandomBeer() {
-        List<Beer> beers = beerRepository.findAll();
+        List<Beer> beers = beerRepository.findAll(); // достаем все сорта пива из базы данных
 
-        return beers.get(new Random().nextInt(beers.size() -0));
+        return beers.get(new Random().nextInt(beers.size() -0)); // выбираем и возвращаем случайный сорт из списка
     }
 }
