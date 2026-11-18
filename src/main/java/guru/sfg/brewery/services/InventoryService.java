@@ -39,10 +39,9 @@ public class InventoryService {
             AtomicInteger inventory_qoh = new AtomicInteger();
 
             /*
-             * Он перебирает все партии пива на складе и суммирует их количество (quantityOnHand)
-             * в общий счетчик inventory_qoh, т.к. BeerInventory — это не «сколько всего пива», а запись
-             * о конкретной сваренной партии, и таких партий (с разными датами и объемами) у одного
-             * сорта пива может быть сколько угодно
+             * .getBeerInventory() - получает коллекцию всех сваленных партий конкретного пива
+             * .forEach(inv -> inventory_qoh // достает количество бутылок в этой конкретной партии
+             * .addAndGet(inv.getQuantityOnHand())); // прибавляет это количество к общему счетчику (метод из AtomicInteger)
              */
             beer.getBeerInventory().forEach(inv -> inventory_qoh.addAndGet(inv.getQuantityOnHand()));
 
@@ -52,7 +51,7 @@ public class InventoryService {
              */
             log.debug("Inv: " + beer.getBeerName() + " : QOH = " + inventory_qoh.get());
 
-            if(beer.getMinOnHand() >= inventory_qoh.get() ) {
+            if(beer.getMinOnHand() >= inventory_qoh.get() ) { // если минимум по этой партии - это больше чем осталось (т.е. осталось меньше минимума)
                 //brew beer
                 publisher.publishEvent(new BrewBeerEvent(beer)); // event - просто новость, паблишер ее публикует
             }

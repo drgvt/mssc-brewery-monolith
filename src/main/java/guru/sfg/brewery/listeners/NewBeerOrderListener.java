@@ -43,16 +43,16 @@ public class NewBeerOrderListener {
      */
     @Async // // выполняется в отдельном потоке
     @EventListener
-    @Transactional
+    @Transactional // либо всё отработает целиком (взять объект из БД, изменить его, вернуть в БД обратно), либо ничего
     public synchronized void listen(NewBeerOrderEvent event){ //needed sychronized to prevent errors (от гонки потоков)
         log.debug("Allocating Order: " + event.getBeerOrder().getCustomerRef());
 
-        AtomicInteger totalOrdered = new AtomicInteger(); // счетчик всего заказанного (TestingRoom заказывает под одной позиции, но это на случай реальных заказов, где может быть много позиций разного пива)
+        AtomicInteger totalOrdered = new AtomicInteger(); // счетчик всего заказанного (TestingRoom заказывает по одной позиции, но это на случай реальных заказов, где может быть много позиций разного пива)
         AtomicInteger totalAllocated = new AtomicInteger(); // счетчик всего зарезервированного
 
         BeerOrder beerOrder = beerOrderRepository.findOneById(event.getBeerOrder().getId()); // достаем заказ из БД (сохранен ранее в БД в BeerOrderServiceImpl)
 
-        if (beerOrder == null){ // если заказ еще не долетел до БД (событие сработало быстрее)
+        if (beerOrder == null){ // если заказ еще не долетел до БД (событие сработало быстрее - в сервисе сначала сохранение заказа в БД, потом вызов события)
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -70,7 +70,7 @@ public class NewBeerOrderListener {
             totalAllocated.set(totalAllocated.get() + beerOrderLine.getQuantityAllocated()); // прибавляем к общему зарезервированному
         });
 
-        if(totalOrdered.get() == totalAllocated.get()){ // если зарезервировали ровно столько, сколько заказали
+        if(totalOrdered.get() == totalAllocated.get()){ // если во всём заказе зарезервировали ровно столько, сколько заказали
             log.debug("Order Completely Allocated: " + beerOrder.getCustomerRef());
             beerOrder.setOrderStatus(OrderStatusEnum.READY); // меняем статус на READY
         }
@@ -102,7 +102,7 @@ public class NewBeerOrderListener {
             }
         });
         /*
-         * Он зарезервирует 4 бутылки (quantityAllocated = 4), оставит заказ в статусе NEW,
+         * Если надо 5, а есть 4, он зарезервирует 4 бутылки (quantityAllocated = 4), оставит заказ в статусе NEW,
          * а разница (1 бутылка) останется недоделанной до тех пор, пока на складе не появится новая партия.
          */
 

@@ -1,3 +1,9 @@
+/*
+ * Ловит событие о пополнении склада (NewInventoryEvent), находит в базе данных все новые
+ * заказы (со статусом NEW), которые не могли быть выполнены из-за нехватки пива, и заново
+ * публикует для них событие NewBeerOrderEvent, чтобы запустить процесс резервации уже с новыми запасами
+ */
+
 package guru.sfg.brewery.listeners;
 
 import guru.sfg.brewery.domain.BeerOrder;
