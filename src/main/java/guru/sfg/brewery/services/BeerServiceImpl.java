@@ -22,7 +22,7 @@ import java.util.UUID;
 public class BeerServiceImpl implements BeerService {
 
     public final String BEER_PATH_V1 = "/api/v1/beer/";
-    private final RestTemplate restTemplate; // // HTTP-клиент из Spring, который позволяет Java-коду отправлять запросы (GET, POST и т.д.) на другие сервисы и получать от них ответы
+    private final RestTemplate restTemplate; // HTTP-клиент из Spring, который позволяет Java-коду отправлять запросы (GET, POST и т.д.) на другие сервисы и получать от них ответы
 
     private String beerServiceHost;
 

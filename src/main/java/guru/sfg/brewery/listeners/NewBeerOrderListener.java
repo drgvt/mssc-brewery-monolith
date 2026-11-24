@@ -84,7 +84,7 @@ public class NewBeerOrderListener {
      * сохраняет изменения и удаляет те партии, которые опустели до нуля.
      */
     private void allocateBeerOrderLine(BeerOrderLine beerOrderLine) {
-        List<BeerInventory> beerInventoryList = beerInventoryRepository.findAllByBeer(beerOrderLine.getBeer()); // ищем все партии этого пива на складе
+        List<BeerInventory> beerInventoryList = beerInventoryRepository.findAllByBeer(beerOrderLine.getBeer()); // ищем все партии этого конкретного пива на складе
 
         beerInventoryList.forEach(beerInventory -> { // перебираем партии
             int inventory = (beerInventory.getQuantityOnHand() == null) ? 0 : beerInventory.getQuantityOnHand(); // сколько в партии (или 0)
@@ -102,8 +102,8 @@ public class NewBeerOrderListener {
             }
         });
         /*
-         * Если надо 5, а есть 4, он зарезервирует 4 бутылки (quantityAllocated = 4), оставит заказ в статусе NEW,
-         * а разница (1 бутылка) останется недоделанной до тех пор, пока на складе не появится новая партия.
+         * Если надо 5, а есть 4 по итогам проода всех партий, он зарезервирует 4 бутылки (quantityAllocated = 4), оставит
+         * заказ в статусе NEW, а разница (1 бутылка) останется недоделанной до тех пор, пока на складе не появится новая партия.
          */
 
         beerInventoryRepository.saveAll(beerInventoryList); // сохраняем изменения по всем партиям

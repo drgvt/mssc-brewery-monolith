@@ -73,7 +73,7 @@ public class TastingRoomService {
                 .beerOrderLines(beerOrderLineSet) // кладем в заказ список наших позиций
                 .build();
 
-        BeerOrderDto savedOrder = beerOrderService.placeOrder(customer.getId(), beerOrder); // отправляем заказ в сервис для сохранения в БД
+        BeerOrderDto savedOrder = beerOrderService.placeOrder(customer.getId(), beerOrder); // отправляем заказ в сервис (он сохранит его в БД, опубликует событие и вернет готовый DTO)
 
         log.debug("Saved Tasting Room Order: " + savedOrder.getId());
     }
